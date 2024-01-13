@@ -1,3 +1,5 @@
+import './CoreConcept.css';
+
 export default function CoreConcept({ concept }) {
     const title = concept.title;
     const description = concept.description;
