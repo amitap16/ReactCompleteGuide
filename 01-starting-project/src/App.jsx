@@ -5,7 +5,7 @@ import CoreConcept from './components/CoreConcept/CoreConcept.jsx';
 import TabButton from './components/TabButton.jsx';
 
 function App() {
-    const [selectedTopic, setSelectedTopic] = useState(EXAMPLES.components);
+    const [selectedTopic, setSelectedTopic] = useState('components');
 
     //const ButtonNames = ['components', 'jsx', 'props', 'state'];
     function handleSelect(selectedButton) {
