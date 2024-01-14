@@ -4,10 +4,15 @@ import CoreConcept from './components/CoreConcept/CoreConcept.jsx';
 import TabButton from './components/TabButton.jsx';
 
 function App() {
+    let tabContent = 'Please click a button';
+
     //const ButtonNames = ['components', 'jsx', 'props', 'state'];
     function handleSelect(selectedButton) {
-        console.log(selectedButton);
+        tabContent = selectedButton;
+        console.log(tabContent);
     }
+
+    console.log('App Component rendering');
 
     return (
         <div>
@@ -32,6 +37,7 @@ function App() {
                     </menu>
                 </section>
             </main>
+            {tabContent}
         </div>
     );
 }
