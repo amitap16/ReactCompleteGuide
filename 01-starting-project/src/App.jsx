@@ -1,18 +1,19 @@
+import { useState } from 'React';
 import { CORE_CONCEPTS } from './data.js';
 import Header from './components/Header/Header.jsx';
 import CoreConcept from './components/CoreConcept/CoreConcept.jsx';
 import TabButton from './components/TabButton.jsx';
 
 function App() {
-    let tabContent = 'Please click a button';
+    const [selectedTopic, setSelectedTopic] = useState('Please click a button');
 
     //const ButtonNames = ['components', 'jsx', 'props', 'state'];
     function handleSelect(selectedButton) {
-        tabContent = selectedButton;
-        console.log(tabContent);
+        setSelectedTopic(selectedButton);
+        console.log(selectedTopic);
     }
 
-    console.log('App Component rendering');
+    console.log('App Component rendering...');
 
     return (
         <div>
@@ -37,7 +38,7 @@ function App() {
                     </menu>
                 </section>
             </main>
-            {tabContent}
+            {selectedTopic}
         </div>
     );
 }
