@@ -1,4 +1,4 @@
-Certainly! ReactJS is a JavaScript library for building user interfaces. It's based on the concept of building UIs using reusable components. Let's dive into the core concepts:
+# React core concepts:
 
 1. **Components:**
    Components are the building blocks of a React application. They are reusable and can be composed to form complex UIs. Components can be either functional or class-based. Here's an example of a functional component:
