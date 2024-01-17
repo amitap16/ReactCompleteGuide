@@ -1,7 +1,12 @@
 import { useState } from "react";
 
-export default function Player({ name, symbol }) {
+export default function Player({ initialName, symbol }) {
+    const [playerName, setPlayerName] = useState(initialName);
     const [isEditing, setIsEditing] = useState(false);
+
+    function handleChange(event) {
+        setPlayerName(event.target.value);
+    }
 
     function handleEditClick() {
         // Passing value this way it take the latest value.
@@ -10,15 +15,15 @@ export default function Player({ name, symbol }) {
         //setIsEditing(!isEditing);
     }
 
-    let playerName = <span className="player-name">{name}</span>;
+    let editablePlyaerName = <span className="player-name">{playerName}</span>;
 
     if (isEditing) {
-        playerName = <input className="player" type="text" value={name} required />;
+        editablePlyaerName = <input type="text" value={playerName} required onChange={handleChange} />;
     }
 
     return (<li>
         <span className="player">
-            {playerName}
+            {editablePlyaerName}
             <span className="player-symbol">{symbol}</span>
         </span>
         <button onClick={handleEditClick}>{isEditing ? 'Save' : 'Edit'}</button>
