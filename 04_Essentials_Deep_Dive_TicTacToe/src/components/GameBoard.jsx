@@ -23,7 +23,8 @@ export default function GameBorad({ onSelectSquare, turns }) {
                     {row.map((col, colIndex) => (
                         <li key={colIndex}>
                             <button
-                                onClick={() => onSelectSquare(rowIndex, colIndex)}>
+                                onClick={() => onSelectSquare(rowIndex, colIndex)}
+                                disabled={col !== null}>
                                 {col}
                             </button>
                         </li>))}
