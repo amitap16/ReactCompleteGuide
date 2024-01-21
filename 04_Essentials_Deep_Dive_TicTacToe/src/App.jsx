@@ -4,18 +4,22 @@ import Log from './components/Log';
 import Player from './components/Player';
 import './index.css';
 
+function deriveActtivePlayer(gameTurns) {
+    let currentPlayer = 'X';
+    if (gameTurns.length > 0 && gameTurns[0].player === 'X') {
+        currentPlayer = '0';
+    }
+
+    return currentPlayer;
+}
+
 function App() {
-    const [activePlayer, setActivePlayer] = useState('X');
     const [gameTurns, setGameTurns] = useState([]);
+    const activePlayer = deriveActtivePlayer(gameTurns);
 
     function handleSelectSquare(rowIndex, colIndex) {
-        setActivePlayer((curActivePlayer) => curActivePlayer === 'X' ? '0' : 'X');
-
         setGameTurns(prevTurns => {
-            let currentPlayer = 'X';
-            if (gameTurns.length > 0 && gameTurns[0].player === 'X') {
-                currentPlayer = '0';
-            }
+            const currentPlayer = deriveActtivePlayer(prevTurns);
 
             const updatedTurns = [
                 { square: { row: rowIndex, col: colIndex }, player: currentPlayer }
@@ -23,7 +27,6 @@ function App() {
             ];
             return updatedTurns;
         });
-
     }
 
     return (<main>
