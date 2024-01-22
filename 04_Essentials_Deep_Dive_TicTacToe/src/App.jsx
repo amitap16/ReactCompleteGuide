@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import GameBorad from './components/GameBoard';
-import Log from './components/Log';
-import Player from './components/Player';
+import GameBorad from './components/GameBoard.jsx';
+import GameOver from './components/GameOver.jsx';
+import Log from './components/Log.jsx';
+import Player from './components/Player.jsx';
 import { WINNING_COMBINATIONS } from './winning-combinations.js';
 
 const initialGameBorad = [
@@ -40,9 +41,11 @@ function App() {
         if (firstSquareSymbol
             && firstSquareSymbol === secondSquareSymbol
             && firstSquareSymbol === thirdSquareSymbol) {
-            winner = `Winner is ${firstSquareSymbol}!!`;
+            winner = firstSquareSymbol;
         }
     }
+
+    const hasDraw = gameTurns.length === 9 && !winner;
 
     function handleSelectSquare(rowIndex, colIndex) {
         setGameTurns(prevTurns => {
@@ -60,9 +63,9 @@ function App() {
         <div id="game-container">
             <ol id="players" className="highlight-player">
                 <Player initialName="Player 1" symbol="X" isActive={activePlayer === 'X'} />
-                <Player initialName="Player 2" symbol="0" isActive={activePlayer === '0'} />
+                <Player initialName="Pl ayer 2" symbol="0" isActive={activePlayer === '0'} />
             </ol>
-            {winner}
+            {(winner || hasDraw) && <GameOver winner={winner} />}
             <GameBorad onSelectSquare={handleSelectSquare} board={gameBoard} />
         </div>
         <Log turns={gameTurns} />
