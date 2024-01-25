@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({ initialName, symbol, isActive, onChangeName }) {
     const [playerName, setPlayerName] = useState(initialName);
     const [isEditing, setIsEditing] = useState(false);
 
@@ -13,6 +13,10 @@ export default function Player({ initialName, symbol, isActive }) {
         setIsEditing((editing) => !editing);
         // while here it will not take the latest value if you call the same line again
         //setIsEditing(!isEditing);
+
+        if (isEditing) {
+            onChangeName(symbol, playerName);
+        }
     }
 
     let editablePlyaerName = <span className="player-name">{playerName}</span>;
