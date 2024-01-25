@@ -20,7 +20,6 @@ export default function Player({ initialName, symbol, isActive, onChangeName }) 
     }
 
     let editablePlyaerName = <span className="player-name">{playerName}</span>;
-
     if (isEditing) {
         editablePlyaerName = <input type="text" value={playerName} required onChange={handleChange} />;
     }
