@@ -4,7 +4,7 @@ import UserOutput from "./components/UserOutput"
 
 function App() {
     return (
-        <main className="center">
+        <main>
             <Header />
 
             <UserInput />
