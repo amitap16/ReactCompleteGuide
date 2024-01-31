@@ -1,5 +1,4 @@
 export default function UserInput({ inputData, handleChange }) {
-
     return (
         <div id="user-input">
             <div className="input-group">

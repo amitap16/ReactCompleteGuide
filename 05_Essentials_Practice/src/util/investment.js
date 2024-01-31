@@ -27,6 +27,7 @@ export function calculateInvestmentResults({
     return annualData;
 }
 
+// This function gives the expected result as par task assigned by tutor.
 export function calculateInvestmentResults2({
     initialInvestment,
     annualInvestment,
