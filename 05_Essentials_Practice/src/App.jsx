@@ -44,6 +44,7 @@ function App() {
     return (
         <main>
             <Header />
+            {inputData['DU'] < 1 ? (<p className="info-message center">Enter valid DURATION which should be 1 or more!!</p>) : ''}
             <UserInput inputData={inputData} handleChange={handleInputDataChange} />
             <UserOutput result={result} />
         </main>
