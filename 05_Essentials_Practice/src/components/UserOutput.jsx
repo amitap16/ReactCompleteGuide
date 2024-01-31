@@ -1,12 +1,4 @@
-import { calculateInvestmentResults } from "../util/investment";
-
-export default function UserOutput({ initialInvestment, annualInvestment, expectedReturn, duration }) {
-    initialInvestment = 10000;
-    annualInvestment = 1000;
-    expectedReturn = 10;
-    duration = 20;
-    const result = calculateInvestmentResults({ initialInvestment, annualInvestment, expectedReturn, duration });
-
+export default function UserOutput({ result }) {
     return (
         <table id="result">
             <thead>
@@ -19,13 +11,13 @@ export default function UserOutput({ initialInvestment, annualInvestment, expect
                 </tr>
             </thead>
             <tbody>
-                {result.map(({ year, interest, valueEndOfYear, annualInvestment }) => (
+                {result.map(({ year, investmentValue, interestYear, totalInterest, investedCapital }) => (
                     <tr>
                         <td>{year}</td>
-                        <td>{interest}</td>
-                        <td>{valueEndOfYear}</td>
-                        <td>{annualInvestment}</td>
-                        <td>{annualInvestment}</td>
+                        <td>{investmentValue}</td>
+                        <td>{interestYear}</td>
+                        <td>{totalInterest}</td>
+                        <td>{investedCapital}</td>
                     </tr>))}
             </tbody>
         </table>
