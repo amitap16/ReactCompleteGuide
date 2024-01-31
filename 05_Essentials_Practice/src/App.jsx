@@ -44,7 +44,7 @@ function App() {
     return (
         <main>
             <Header />
-            <UserInput handleChange={handleInputDataChange} />
+            <UserInput inputData={inputData} handleChange={handleInputDataChange} />
             <UserOutput result={result} />
         </main>
     );

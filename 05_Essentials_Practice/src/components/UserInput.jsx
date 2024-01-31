@@ -1,16 +1,16 @@
-export default function UserInput({ handleChange }) {
+export default function UserInput({ inputData, handleChange }) {
 
     return (
         <div id="user-input">
             <div className="input-group">
                 <div>
                     <label>Initial Investment</label>
-                    <input type="number" min="1000" max="100000" defaultValue="15000"
-                      name="II" id="test" onChange={(e) => handleChange(e, "II")}></input>
+                    <input type="number" value={inputData['II']}
+                        onChange={(e) => handleChange(e, "II")}></input>
                 </div>
                 <div>
                     <label>Annual Investment</label>
-                    <input type="number" min="1000" max="100000" defaultValue="1200"
+                    <input type="number" value={inputData['AI']}
                         onChange={(e) => handleChange(e, "AI")}></input>
                 </div>
             </div>
@@ -18,12 +18,12 @@ export default function UserInput({ handleChange }) {
             <div className="input-group">
                 <div>
                     <label>Expected Return</label>
-                    <input type="number" min="1" max="50" defaultValue="6"
+                    <input type="number" value={inputData['ER']}
                         onChange={(e) => handleChange(e, "ER")}></input>
                 </div>
                 <div>
                     <label>Duration</label>
-                    <input type="number" min="1" max="50" defaultValue="10"
+                    <input type="number" value={inputData['DU']}
                         onChange={(e) => handleChange(e, "DU")}></input>
                 </div>
             </div>
