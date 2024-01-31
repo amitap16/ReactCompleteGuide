@@ -43,14 +43,18 @@ export function calculateInvestmentResults2({
         totalInterest += interestEarnedInYear;
         annualData.push({
             year: i + 1, // year identifier
-            investmentValue: formatter.format(investmentValue), // investment value at end of year
-            interestYear: formatter.format(interestEarnedInYear), // the amount of interest earned in this year
-            totalInterest: formatter.format(totalInterest),
-            investedCapital: formatter.format(investmentValue - totalInterest), // investment added in this year
+            investmentValue: getFormattedValue(investmentValue), // investment value at end of year
+            interestYear: getFormattedValue(interestEarnedInYear), // the amount of interest earned in this year
+            totalInterest: getFormattedValue(totalInterest), // total amount of interest earned from start to till current year
+            investedCapital: getFormattedValue(investmentValue - totalInterest), // total investment at end of year
         });
     }
 
     return annualData;
+
+    function getFormattedValue(value) {
+        return formatter.format(value);
+    }
 }
 
 // The browser-provided Intl API is used to prepare a formatter object
