@@ -1,25 +1,33 @@
-export default function UserOutput({ result }) {
-    return (
-        <table id="result">
-            <thead>
-                <tr>
-                    <th>Year</th>
-                    <th>Investment Value</th>
-                    <th>Interest (Year)</th>
-                    <th>Total Interest</th>
-                    <th>Invested Capital</th>
-                </tr>
-            </thead>
-            <tbody>
-                {result.map(({ year, investmentValue, interestYear, totalInterest, investedCapital }) => (
-                    <tr>
-                        <td>{year}</td>
-                        <td>{investmentValue}</td>
-                        <td>{interestYear}</td>
-                        <td>{totalInterest}</td>
-                        <td>{investedCapital}</td>
-                    </tr>))}
-            </tbody>
-        </table>
+import { calculateInvestmentResults, formatter } from "../util/investment";
+
+export default function UserOutput({ inputData }) {
+    const result = calculateInvestmentResults(inputData);
+    const initialInvestment = result[0].valueEndOfYear - result[0].interest - result[0].annualInvestment;
+
+    return (<table id="result">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Investment Value</th>
+                <th>Interest (Year)</th>
+                <th>Total Interest</th>
+                <th>Invested Capital</th>
+            </tr>
+        </thead>
+        <tbody>
+            {result.map((yearData) => {
+                const totalInterest = yearData.valueEndOfYear - (yearData.annualInvestment * yearData.year) - initialInvestment;
+                const investedCapital = yearData.valueEndOfYear - totalInterest;
+
+                return (<tr key={yearData.year}>
+                    <td>{yearData.year}</td>
+                    <td>{formatter.format(yearData.valueEndOfYear)}</td>
+                    <td>{formatter.format(yearData.interest)}</td>
+                    <td>{formatter.format(totalInterest)}</td>
+                    <td>{formatter.format(investedCapital)}</td>
+                </tr>)
+            })}
+        </tbody>
+    </table>
     );
 }

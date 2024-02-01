@@ -2,51 +2,33 @@ import { useState } from "react";
 import Header from "./components/Header"
 import UserInput from "./components/UserInput"
 import UserOutput from "./components/UserOutput"
-import { calculateInvestmentResults2 } from "./util/investment";
 
 const INIT_INPUT_DATA = {
-    'II': 15000, //Initial Investment
-    'AI': 1200, //Annual Investment
-    'ER': 6, //Expected Return
-    'DU': 10 //Duration
+    initialInvestment: 15000,
+    annualInvestment: 1200,
+    expectedReturn: 6,
+    duration: 10
 };
 
 function App() {
     const [inputData, setInputData] = useState(INIT_INPUT_DATA);
-    let result = calculateResult();
+    const isUserInputValid = inputData.duration >= 1;
 
-    function handleInputDataChange(event, key) {
+    function handleInputDataChange(key, value) {
         setInputData((prevData) => {
             return {
                 ...prevData,
-                [key]: parseInt(event?.target?.value)
+                [key]: parseInt(value)
             }
         });
-
-        result = calculateResult();
-    }
-
-    function calculateResult() {
-        const initialInvestment = inputData['II'];
-        const annualInvestment = inputData['AI'];
-        const expectedReturn = inputData['ER'];
-        const duration = inputData['DU'];
-        console.log(initialInvestment, annualInvestment, expectedReturn, duration);
-
-        const result = calculateInvestmentResults2({
-            initialInvestment, annualInvestment, expectedReturn, duration
-        });
-        console.log(result);
-
-        return result;
     }
 
     return (
         <main>
             <Header />
-            {inputData['DU'] < 1 ? (<p className="info-message center">Enter valid DURATION which should be 1 or more!!</p>) : ''}
             <UserInput inputData={inputData} handleChange={handleInputDataChange} />
-            <UserOutput result={result} />
+            {!isUserInputValid && (<p className="info-message center">Please enter DURATION greater than 1.</p>)}
+            {isUserInputValid && (<UserOutput inputData={inputData} />)}
         </main>
     );
 }
