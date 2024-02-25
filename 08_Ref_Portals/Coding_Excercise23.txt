@@ -1,6 +1,6 @@
 //Coding Exercise 23: Forwarding Refs
 
-import React from 'react';
+iimport React from 'react';
 import { useRef } from 'react';
 import Input from './Input';
 
@@ -10,20 +10,20 @@ export const userData = {
 };
 
 export function App() {
-  const inputNameRef = React.useRef();
-  const inputEmailRef = React.useRef();
+  const name = React.useRef();
+  const email = React.useRef();
   
   function handleSaveData() {
-    userData.name =  inputNameRef.current.value;
-    userData.email = inputEmailRef.current.value;
+    userData.name =  name.current.value;
+    userData.email = email.current.value;
 
     console.log(userData);
   }
 
   return (
     <div id="app">
-      <Input type="text" label="Your Name" ref={inputNameRef} />
-      <Input type="email" label="Your E-Mail" ref={inputEmailRef} />
+      <Input type="text" label="Your Name" ref={name} />
+      <Input type="email" label="Your E-Mail" ref={email} />
       <p id="actions">
         <button onClick={handleSaveData}>Save Data</button>
       </p>
@@ -35,11 +35,11 @@ import React from 'react';
 import {forwardRef} from 'react';
 
 const Input =
-React.forwardRef(function({label, type}, inputRef) {
+React.forwardRef(function({label, ...props}, ref) {
   return (<>
     <p className="control">
       <label>{label}</label>
-      <input type={type} ref={inputRef}/>
+      <input {...props} ref={ref}/>
     </p>
     </>
   );
