@@ -1,9 +1,16 @@
+import SideBar from "./components/sideBar";
+
 function App() {
-  return (
-    <>
-      <h1 className="my-8 text-center text-5xl font-bold">Hello World</h1>
-    </>
-  );
+    return (
+        <div className="flex">
+            <SideBar></SideBar>
+            <div
+                className="p-7 text-2x1 font-semibold flex-1 h-screen">
+                <h1>
+                    Hello World</h1>
+            </div>
+        </div>
+    );
 }
 
 export default App;
