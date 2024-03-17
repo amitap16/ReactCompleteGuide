@@ -1,15 +1,10 @@
-import { useState } from "react";
-
 export default function SideBar() {
-    const [open, setOpen] = useState(true);
-    return (<div
-        className={`${open ? "w-72" : "w-20"} duration-300 h-screen bg-dark-purple relative`}>
-        <img src="./src/assets/control.png"
-            className={`absolute cursor-pointer rounded-full
--right-3 top-9 w-7 border-2 border-dark-purple ${!open && "rotate-180"}`}
-            onClick={() => setOpen(!open)}
-        />
-        Your Projects
-    </div>
+    return (<aside
+        className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
+        <h2 className="mb-8 font-bold uppercase md:text-xl text-stone-200">Your Projecs</h2>
+        <div>
+            <button className="px-4 py-2 text-xs md:text-base rounded-md bg-stone-700 text-stone-400 hover:bg-stone-600 hover:text-stone-100">+ Add Project</button>
+        </div>
+    </aside>
     );
 }
