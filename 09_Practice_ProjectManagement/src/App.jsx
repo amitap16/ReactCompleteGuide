@@ -10,10 +10,15 @@ function App() {
     });
 
     const content =
-        (projectsState.selectedProjectId === undefined ? <NoProjectSelected onAddProject={handleAddProject} /> :
-            projectsState.selectedProjectId === null ? <NewProject handleCancel={handleCancelProject} /> : <></>);
+        (projectsState.selectedProjectId === null
+            ? <NewProject handleCancel={handleCancelProject} handleAddProject={handleAddProject} /> :
+            projectsState.selectedProjectId === undefined
+                ? <NoProjectSelected onStartProject={startAddProject} />
+                : <></>);
 
-    function handleAddProject() {
+    console.log(projectsState);
+
+    function startAddProject() {
         setProjectsState(prevState => {
             return {
                 ...prevState,
@@ -31,9 +36,23 @@ function App() {
         });
     }
 
+    function handleAddProject(data) {
+        const newProject = {
+            ...data,
+            id: Math.random()
+        };
+
+        setProjectsState(prevState => {
+            return {
+                ...prevState,
+                projects: [...prevState.projects, newProject]
+            }
+        });
+    }
+
     return (
         <main className="h-screen my-8 flex gap-8">
-            <SideBar onAddProject={handleAddProject} />
+            <SideBar onStartProject={startAddProject} />
             {content}
         </main>
     );
